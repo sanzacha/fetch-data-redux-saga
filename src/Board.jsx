@@ -4,7 +4,7 @@ import axios from 'axios';
 import List from './List';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import { connect } from 'react-redux';
+import {connect} from 'react-redux';
 
 const styles = {
   flexContainer: {
@@ -20,9 +20,8 @@ const styles = {
 
 class Board extends Component {
   static propTypes = {
-    id: PropTypes.string.isRequired,
-    currentBoard: PropTypes.number,
-    getCurrentBoard: PropTypes.func
+    dispatch: PropTypes.func.isRequired,
+    currentBoard: PropTypes.object,
   };
 
   constructor(props) {
@@ -35,7 +34,10 @@ class Board extends Component {
   }
 
   componentDidMount() {
-    this.props.getCurrentBoard(this.props.id);
+    this.props.dispatch({
+      type: 'GET_CURRENT_BOARD',
+      boardId: 1
+    })
   }
 
   handleCreateList(event) {
@@ -108,21 +110,14 @@ class Board extends Component {
     this.setState({addListTitle: event.target.value});
   }
 
-  mapStateToPropsList(listId, state) {
-    
-  }
-
-  mapDispatchToPropsList(listId, dispatch) {
-    
-  }
-
   render() {
-    const lists = this.props.currentBoard ? this.props.currentBoard.lists : [];
+    const currentBoard = this.props.currentBoard || {'lists': []};
 
+    console.log('this.props.currentBoard----', currentBoard)
     return (
       <Fragment>
         <div style={styles.flexContainer}>
-          {lists.map(list => (
+          {currentBoard.lists.map(list => (
             <List
               styles={styles.flexItem}
               key={list.id}
@@ -165,10 +160,4 @@ const mapStateToProps = (state) => ({
   currentBoard: state.currentBoard
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  getCurrentBoard: (boardId) => dispatch({
-    type: 'GET_CURRENT_BOARD',
-    payload: {boardId}})
-});
-
-export default connect(mapStateToProps, mapDispatchToProps)(Board);
+export default connect(mapStateToProps) (Board);
