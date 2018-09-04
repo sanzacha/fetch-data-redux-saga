@@ -155,4 +155,89 @@ function TrelloApp(currState, action) {
   }
 }
 
+/*
+  {
+    currentBoard: {
+      id: ,
+      name: ,
+      lists: [{
+        id: ,
+        name: ,
+        text: 
+      }]
+    }
+  }
+
+  {
+    type: 'ADD_CARD',
+    payload: {
+      listId: '',
+      text: ''
+    }
+  }
+
+  {
+    type: 'CREATE_LIST',
+    payload: {
+      name: ''
+    }
+  }
+
+  {
+    type: 'EDIT_CARD',
+    payload: {
+      listId: ,
+      cardId: ,
+      newText: 
+    }
+  }
+
+  {
+    type: 'DELETE_CARD',
+    payload: {
+      listId: '',
+      cardId: ''
+    }
+  }
+
+  {
+    type: 'DELETE_LIST',
+    payload: {
+      listId: ''
+    }
+  }
+
+  {
+    type: 'MOVE_CARD',
+    payload: {
+      fromListId: ,
+      toListId: ,
+      toListPosition: 
+    }
+  }
+
+  {
+    type: 'MOVE_LIST',
+    payload: {
+      fromPosition: '',
+      toPosition: ''
+    }
+  }
+
+  {
+    type: 'EDIT_LIST',
+    payload: {
+      listId: '',
+      newName:
+    }
+  }
+
+  {
+    type: 'EDIT_BOARD',
+    payload: {
+      newName:
+    }
+  }
+*/
+
 module.exports = TrelloApp;
